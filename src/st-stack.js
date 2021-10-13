@@ -17,7 +17,7 @@ module.exports = class Stack {
   push = (element) => {
     // throw new NotImplementedError('Not implemented');
     // remove line with error and write your code here
-    this.tempStack.push(element);
+    return this.tempStack.push(element);
   }
 
   pop = () => {
