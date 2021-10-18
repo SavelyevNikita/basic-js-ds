@@ -39,10 +39,11 @@ module.exports = class BinarySearchTree {
         }
         let currentNode = this.node;
         while (currentNode) {
+            if (newNode.data === currentNode.data) return;
             if (newNode.data < currentNode.data) {
                 if (currentNode.left === null) {
                     currentNode.left = newNode;
-                    this.minNode = (newNode.left !== null) ? newNode.left : newNode.data;
+                    this.minNode = (newNode.left !== null) ? (newNode.left < this.minNode ? newNode.left : this.minNode) : (newNode.data < this.minNode ? newNode.data : this.minNode);
                     this.arrayOfData.push(newNode.data);
                     return;
                 }
@@ -53,7 +54,7 @@ module.exports = class BinarySearchTree {
             if (newNode.data > currentNode.data) {
                 if (currentNode.right === null) {
                     currentNode.right = newNode;
-                    this.maxNode = (newNode.right !== null) ? newNode.right : newNode.data;
+                    this.maxNode = (newNode.right !== null) ? (newNode.right > this.maxNode ? newNode.right : this.maxNode) : (newNode.data > this.maxNode ? newNode.data : this.maxNode);
                     this.arrayOfData.push(newNode.data);
                     return;
                 }
@@ -61,7 +62,6 @@ module.exports = class BinarySearchTree {
                     currentNode = currentNode.right;
                 }
             }
-
         }
 
     }
